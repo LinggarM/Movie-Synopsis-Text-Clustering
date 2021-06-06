@@ -1,0 +1,440 @@
+<!--
+  =========================================================
+  Material Dashboard - v2.1.2
+  =========================================================
+  
+  Product Page: https://www.creative-tim.com/product/material-dashboard
+  Copyright 2020 Creative Tim (https://www.creative-tim.com)
+  Coded by Creative Tim
+  
+  =========================================================
+  The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="apple-touch-icon" sizes="76x76" href="{{ url_for('static',filename='assets/img/apple-icon.png') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static',filename='assets/img/favicon.png') }}">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>
+      Movie Synopsis Clustering
+    </title>
+    <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
+    <!--     Fonts and icons     -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.3.0/css/ripples.min.css">
+    <!-- CSS Files -->
+    <link href="{{ url_for('static',filename='assets/css/material-dashboard.css') }}" rel="stylesheet" />
+  </head>
+  <body class="">
+    <script src="{{ url_for('static',filename='assets/js/core/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='assets/js/core/popper.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='assets/js/core/bootstrap-material-design.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='assets/js/plugins/perfect-scrollbar.jquery.min.js') }}"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.3.0/js/ripples.min.js'></script>
+    <div class="wrapper ">
+      <div class="sidebar" data-color="purple" data-background-color="white" data-image="{{ url_for('static',filename='assets/img/sidebar-1.jpg') }}">
+        <div class="logo">
+          <a href="#" class="simple-text logo-normal">
+          <i class="material-icons">movie</i>
+          Movie Synopsis<br/>
+          Clustering
+          </a>
+        </div>
+        <div class="sidebar-wrapper">
+          <ul class="nav">
+            <li class="nav-item active">
+              <a class="nav-link" href="./dashboard.html">
+                <i class="material-icons">model_training</i>
+                <p>K-Means Model Training</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./user.html">
+                <i class="material-icons">receipt</i>
+                <p>Clustering Result</p>
+              </a>
+            </li>
+            <li class="nav-item ">
+              <a class="nav-link" href="./tables.html">
+                <i class="material-icons">online_prediction</i>
+                <p>Cluster Prediction</p>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="main-panel">
+        <div class="content">
+          <div class="container-fluid">
+            <div class="row justify-content-center">
+              <div class="col-md-8">
+                <div class="card">
+                  <div class="card-header card-header-primary">
+                    <h4 class="card-title">K-Means Model Training</h4>
+                    <p class="card-category">Train the K-Means model to cluster the movie synopsis data</p>
+                  </div>
+                  <div class="card-body">
+                    <form>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label class="bmd-label-floating">Cluster Number (k)</label>
+                            <input type="text" class="form-control">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row justify-content-md-center">
+                        <button type="submit" class="btn btn-primary btn-lg btn-round pull-center">
+                        <i class="material-icons">model_training</i>
+                        Train Model
+                        </button>
+                      </div>
+                      <div class="clearfix"></div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="card">
+                  <div class="card-header card-header-primary">
+                    <h4 class="card-title ">Movie Synopsis Labeled</h4>
+                    <p class="card-category">Labeled data based on clustering result</p>
+                  </div>
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <table class="table">
+                        <thead class=" text-primary">
+                          <th style="width: 16.66%">
+                            ID
+                          </th>
+                          <th style="width: 25%">
+                            Title
+                          </th>
+                          <th>
+                            Synopsis
+                          </th>
+                          <th style="width: 16.66%; ">
+                            Cluster
+                          </th>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>
+                              1
+                            </td>
+                            <td>
+                              Match Point
+                            </td>
+                            <td>
+                              match point is woody allen’s satire of the british high society and the ambition of a young tennis instructor to enter into it. yet when he must decide between two women - one assuring him his place in high society, and the other that would take him far from it - palms start to sweat and a dark psychological match in his head begins.
+                            </td>
+                            <td class="text-primary">
+                              1
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              2
+                            </td>
+                            <td>
+                              Dead Poets Society
+                            </td>
+                            <td>
+                              at an elite, old-fashioned boarding school in new england, a passionate english teacher inspires his students to rebel against convention and seize the potential of every day, courting the disdain of the stern headmaster.
+                            </td>
+                            <td class="text-primary">
+                              1
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              3
+                            </td>
+                            <td>
+                              Klute
+                            </td>
+                            <td>
+                              a high-priced call girl is forced to depend on a reluctant private eye when she is stalked by a psychopath.
+                            </td>
+                            <td class="text-primary">
+                              2
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              4
+                            </td>
+                            <td>
+                              The Hole
+                            </td>
+                            <td>
+                              four teenagers at a british private school secretly uncover and explore the depths of a sealed underground hole created decades ago as a possible bomb shelter.
+                            </td>
+                            <td class="text-primary">
+                              4
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              5
+                            </td>
+                            <td>
+                              Spider-Man
+                            </td>
+                            <td>
+                              after being bitten by a genetically altered spider, nerdy high school student peter parker is endowed with amazing powers to become the amazing superhero known as spider-man.
+                            </td>
+                            <td class="text-primary">
+                              3
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              6
+                            </td>
+                            <td>
+                              Mason Porter
+                            </td>
+                            <td>
+                              Chile
+                            </td>
+                            <td class="text-primary">
+                              3
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row justify-content-md-center">
+              <a style="margin-right : 20px" class="btn btn-primary btn-lg btn-round pull-center" href = "{{ url_for('static',filename='files/kmeans_model.sav') }}">
+              <i class="material-icons">download</i>
+              Download K-Means Model
+              </a>
+              <div class="vl" style="border-left: 1px solid #a9afbb;height: 64px;"></div>
+              <a style="margin-left : 20px" class="btn btn-primary btn-lg btn-round pull-center" href = "{{ url_for('static',filename='files/movie_synopsis_labeled.csv') }}">
+              <i class="material-icons">download</i>
+              Download Labeled Data
+              </a>
+            </div>
+            <div class="row" style="margin-top : 50px">
+              <div class="col-lg-12 col-md-12">
+                <div class="card">
+                  <div class="card-header card-header-tabs card-header-primary">
+                    <div class="nav-tabs-navigation">
+                      <div class="nav-tabs-wrapper">
+                        <h4 class="nav-tabs-title">Evaluation :</h4>
+                        <ul class="nav nav-tabs" data-tabs="tabs">
+                          <li class="nav-item">
+                            <a class="nav-link active" href="#silhouette" data-toggle="tab">
+                              <i class="material-icons">assessment</i> Silhouette Score
+                              <div class="ripple-container"></div>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" href="#elbow" data-toggle="tab">
+                              <i class="material-icons">show_chart</i> Elbow Method
+                              <div class="ripple-container"></div>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <div class="tab-content">
+                      <div class="tab-pane active" id="silhouette">
+                        Diisi
+                      </div>
+                      <div class="tab-pane" id="elbow">
+                        Diisi juga
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-12 col-md-12">
+                <div class="card">
+                  <div class="card-header card-header-tabs card-header-primary">
+                    <div class="nav-tabs-navigation">
+                      <div class="nav-tabs-wrapper">
+                        <h4 class="nav-tabs-title">Data Visualization (with PCA Dimensionality Reduction) :</h4>
+                        <ul class="nav nav-tabs" data-tabs="tabs">
+                          <li class="nav-item">
+                            <a class="nav-link active" href="#2d" data-toggle="tab">
+                              <i class="material-icons">image</i> 2 Dimension
+                              <div class="ripple-container"></div>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" href="#3d" data-toggle="tab">
+                              <i class="material-icons">collections</i> 3 Dimension
+                              <div class="ripple-container"></div>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <div class="tab-content">
+                      <div class="tab-pane active" id="2d">
+                        <table class="table">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <div class="form-check">
+                                  <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" value="" checked>
+                                  <span class="form-check-sign">
+                                  <span class="check"></span>
+                                  </span>
+                                  </label>
+                                </div>
+                              </td>
+                              <td>Sign contract for "What are conference organizers afraid of?"</td>
+                              <td class="td-actions text-right">
+                                <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
+                                <i class="material-icons">edit</i>
+                                </button>
+                                <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
+                                <i class="material-icons">close</i>
+                                </button>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <div class="form-check">
+                                  <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" value="">
+                                  <span class="form-check-sign">
+                                  <span class="check"></span>
+                                  </span>
+                                  </label>
+                                </div>
+                              </td>
+                              <td>Lines From Great Russian Literature? Or E-mails From My Boss?</td>
+                              <td class="td-actions text-right">
+                                <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
+                                <i class="material-icons">edit</i>
+                                </button>
+                                <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
+                                <i class="material-icons">close</i>
+                                </button>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <div class="form-check">
+                                  <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" value="">
+                                  <span class="form-check-sign">
+                                  <span class="check"></span>
+                                  </span>
+                                  </label>
+                                </div>
+                              </td>
+                              <td>Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit
+                              </td>
+                              <td class="td-actions text-right">
+                                <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
+                                <i class="material-icons">edit</i>
+                                </button>
+                                <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
+                                <i class="material-icons">close</i>
+                                </button>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <div class="form-check">
+                                  <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" value="" checked>
+                                  <span class="form-check-sign">
+                                  <span class="check"></span>
+                                  </span>
+                                  </label>
+                                </div>
+                              </td>
+                              <td>Create 4 Invisible User Experiences you Never Knew About</td>
+                              <td class="td-actions text-right">
+                                <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
+                                <i class="material-icons">edit</i>
+                                </button>
+                                <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
+                                <i class="material-icons">close</i>
+                                </button>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="tab-pane" id="3d">
+                        <table class="table">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <div class="form-check">
+                                  <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" value="" checked>
+                                  <span class="form-check-sign">
+                                  <span class="check"></span>
+                                  </span>
+                                  </label>
+                                </div>
+                              </td>
+                              <td>Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit
+                              </td>
+                              <td class="td-actions text-right">
+                                <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
+                                <i class="material-icons">edit</i>
+                                </button>
+                                <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
+                                <i class="material-icons">close</i>
+                                </button>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <div class="form-check">
+                                  <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" value="">
+                                  <span class="form-check-sign">
+                                  <span class="check"></span>
+                                  </span>
+                                  </label>
+                                </div>
+                              </td>
+                              <td>Sign contract for "What are conference organizers afraid of?"</td>
+                              <td class="td-actions text-right">
+                                <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
+                                <i class="material-icons">edit</i>
+                                </button>
+                                <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
+                                <i class="material-icons">close</i>
+                                </button>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
