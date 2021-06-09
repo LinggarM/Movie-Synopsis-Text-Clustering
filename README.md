@@ -3,7 +3,7 @@ Movie Synopsis Text Clustering (Tugas Besar Pengolahan Bahasa Alami - Natural La
 
 ### Installation
 
-Change `path` variable in `kmeans.py` into where you gonna save this repo :
+Change `path` variable in `kmeans.py` into where you gonna save this repo. For the example i'm using `C:\Users\Linggar Maretva\Desktop\New folder` as my path.
 ```sh
 ...
 ...
