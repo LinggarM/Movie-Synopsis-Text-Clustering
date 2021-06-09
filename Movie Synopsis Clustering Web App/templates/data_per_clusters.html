@@ -44,13 +44,13 @@
         </div>
         <div class="sidebar-wrapper">
           <ul class="nav">
-            <li class="nav-item active">
+            <li class="nav-item ">
               <a class="nav-link" href="./">
                 <i class="material-icons">model_training</i>
                 <p>K-Means Model Training</p>
               </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item ">
               <a class="nav-link" href="./clustering-result">
                 <i class="material-icons">analytics</i>
                 <p>Clustering Result</p>
@@ -62,7 +62,7 @@
                 <p>Feature Names</p>
               </a>
             </li>
-            <li class="nav-item ">
+            <li class="nav-item active">
               <a class="nav-link" href="./data-per-clusters">
                 <i class="material-icons">storage</i>
                 <p>Data per Clusters</p>
@@ -86,36 +86,51 @@
       <div class="main-panel">
         <div class="content">
           <div class="container-fluid">
-            <div class="row justify-content-center">
-              <div class="col-md-8">
-                <div class="card">
-                  <div class="card-header card-header-primary">
-                    <h4 class="card-title">K-Means Model Training</h4>
-                    <p class="card-category">Train the K-Means model to cluster the movie synopsis data</p>
-                  </div>
-                  <div class="card-body">
-                    <form method="POST">
-                      <div class="row">
-                        <div class="col-md-12">
-                          <div class="form-group">
-                            <label class="bmd-label-floating">Cluster Number (k) :</label>
-                            <input type="text" class="form-control" name="cluster"/>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row justify-content-md-center">
-                        <button type="submit" class="btn btn-primary btn-lg btn-round pull-center">
-                        <i class="material-icons">model_training</i>
-                        Train Model
-                        </button>
-                      </div>
-                      <div class="clearfix"></div>
-                    </form>
-                  </div>
-                </div>
-              </div>
+			{% for cluster in clusters_data %}
+				<div class="row">
+				  <div class="col-md-12">
+					<div class="card">
+					  <div class="card-header card-header-primary">
+						<h4 class="card-title ">Cluster {{ loop.index0 }}</h4>
+						<p class="card-category">Preview of cluster {{ loop.index0 }} data (5 Data)</p>
+					  </div>
+					  <div class="card-body">
+						<div class="table-responsive">
+						  <table class="table">
+							<thead class=" text-primary">
+							  <th style="width: 8.33%">
+								ID
+							  </th>
+							  <th style="width: 25%">
+								Title
+							  </th>
+							  <th style="width: 66.64%">
+								Synopsis
+							  </th>
+							</thead>
+							<tbody>
+							{% for value in cluster %}
+							<tr>
+							  <td>{{ value[0] }}</td>
+							  <td>{{ value[1] }}</td>
+							  <td>{{ value[2] }}</td>
+							</tr>
+							{% endfor %}
+							</tbody>
+						  </table>
+						</div>
+					  </div>
+					</div>
+				  </div>
+				</div>
+            <div style="margin-bottom : 30px" class="row justify-content-md-center">
+              <a class="btn btn-primary btn-lg btn-round pull-center" href = "{{ url_for('static',filename='files/csv cluster/cluster') }}{{ loop.index0 }}.csv">
+              <i class="material-icons">download</i>
+              Download Full Cluster {{ loop.index0 }}.csv
+              </a>
             </div>
-		  </div>
+			{% endfor %}
+		</div>
         </div>
       </div>
     </div>

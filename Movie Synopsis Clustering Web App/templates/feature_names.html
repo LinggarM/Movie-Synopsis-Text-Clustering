@@ -44,19 +44,19 @@
         </div>
         <div class="sidebar-wrapper">
           <ul class="nav">
-            <li class="nav-item active">
+            <li class="nav-item ">
               <a class="nav-link" href="./">
                 <i class="material-icons">model_training</i>
                 <p>K-Means Model Training</p>
               </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item ">
               <a class="nav-link" href="./clustering-result">
                 <i class="material-icons">analytics</i>
                 <p>Clustering Result</p>
               </a>
             </li>
-            <li class="nav-item ">
+            <li class="nav-item active">
               <a class="nav-link" href="./feature-names">
                 <i class="material-icons">receipt</i>
                 <p>Feature Names</p>
@@ -86,36 +86,47 @@
       <div class="main-panel">
         <div class="content">
           <div class="container-fluid">
-            <div class="row justify-content-center">
-              <div class="col-md-8">
+            <div class="row">
+              <div class="col-md-12">
                 <div class="card">
                   <div class="card-header card-header-primary">
-                    <h4 class="card-title">K-Means Model Training</h4>
-                    <p class="card-category">Train the K-Means model to cluster the movie synopsis data</p>
+                    <h4 class="card-title ">Feature Names for Each Cluster</h4>
+                    <p class="card-category">Preview top 10 features that represent each cluster</p>
                   </div>
                   <div class="card-body">
-                    <form method="POST">
-                      <div class="row">
-                        <div class="col-md-12">
-                          <div class="form-group">
-                            <label class="bmd-label-floating">Cluster Number (k) :</label>
-                            <input type="text" class="form-control" name="cluster"/>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row justify-content-md-center">
-                        <button type="submit" class="btn btn-primary btn-lg btn-round pull-center">
-                        <i class="material-icons">model_training</i>
-                        Train Model
-                        </button>
-                      </div>
-                      <div class="clearfix"></div>
-                    </form>
+					<div style="font-size:18px; padding:10px 0" >
+						{% for value in feature_names %}
+						Cluster {{ value[0] }} :
+						<p style="margin-left : 40px"><b>	
+							{% for word in value[1:] %}
+							{{ word }}, 
+							{% endfor %}
+						</b></p>
+						{% endfor %}
+					</div>
                   </div>
                 </div>
               </div>
             </div>
-		  </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="card">
+                  <div class="card-header card-header-primary">
+                    <h4 class="card-title ">WordCloud Feature Names</h4>
+                    <p class="card-category">WordCloud Feature Names for Each Cluster</p>
+                  </div>
+                  <div class="card-body">
+				  <div style="font-size:18px; padding:10px 0" >
+						{% for value in feature_names %}
+						<b>Cluster {{ value[0] }} :</b>
+                        <img src="{{ url_for('static', filename='files/wordcloud/wordcloud') }}{{ value[0] }}.jpg" width="390px"/>
+						{% endfor %}
+				  </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+			</div>
         </div>
       </div>
     </div>

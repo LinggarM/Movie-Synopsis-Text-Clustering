@@ -44,13 +44,13 @@
         </div>
         <div class="sidebar-wrapper">
           <ul class="nav">
-            <li class="nav-item active">
+            <li class="nav-item ">
               <a class="nav-link" href="./">
                 <i class="material-icons">model_training</i>
                 <p>K-Means Model Training</p>
               </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item ">
               <a class="nav-link" href="./clustering-result">
                 <i class="material-icons">analytics</i>
                 <p>Clustering Result</p>
@@ -68,13 +68,13 @@
                 <p>Data per Clusters</p>
               </a>
             </li>
-            <li class="nav-item ">
+            <li class="nav-item">
               <a class="nav-link" href="./cluster-prediction">
                 <i class="material-icons">online_prediction</i>
                 <p>Cluster Prediction</p>
               </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item active">
               <a class="nav-link" href="./cluster-prediction-bytitle">
                 <i class="material-icons">online_prediction</i>
                 <p>Cluster Prediction (by Title)</p>
@@ -90,27 +90,72 @@
               <div class="col-md-8">
                 <div class="card">
                   <div class="card-header card-header-primary">
-                    <h4 class="card-title">K-Means Model Training</h4>
-                    <p class="card-category">Train the K-Means model to cluster the movie synopsis data</p>
+                    <h4 class="card-title">Predict Cluster from Movie Title</h4>
+                    <p class="card-category">With movie recommendation from related synopsis</p>
                   </div>
                   <div class="card-body">
                     <form method="POST">
                       <div class="row">
                         <div class="col-md-12">
                           <div class="form-group">
-                            <label class="bmd-label-floating">Cluster Number (k) :</label>
-                            <input type="text" class="form-control" name="cluster"/>
+                            <label class="bmd-label-floating">Title :</label>
+                            <input type="text" class="form-control" name="query"/>
                           </div>
                         </div>
                       </div>
                       <div class="row justify-content-md-center">
                         <button type="submit" class="btn btn-primary btn-lg btn-round pull-center">
-                        <i class="material-icons">model_training</i>
-                        Train Model
+                        PREDICT
                         </button>
                       </div>
+					<div style="margin-top:20px; font-size:18px">
+						Query&emsp;: <b>"{{ query }}"</b><br/>
+						Title Result&emsp;: <b>{{ title }}</b><br/>
+						Synopsis&emsp;: <b>"{{ synopsis }}"</b><br/>
+						Cluster predicted&emsp;: <b>Cluster {{ cluster }}</b>
+					</div>
                       <div class="clearfix"></div>
                     </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="card">
+                  <div class="card-header card-header-primary">
+                    <h4 class="card-title ">Related Movies</h4>
+                    <p class="card-category">Movie Recommendation from Movie Synopsis</p>
+                  </div>
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <table class="table">
+                        <thead class=" text-primary">
+                          <th style="width: 8.33%">
+                            ID
+                          </th>
+                          <th style="width: 16.66%">
+                            Title
+                          </th>
+                          <th style="width: 16.66%">
+                            Cosine Similarity Score
+                          </th>
+                          <th style="width: 58.31%">
+                            Synopsis
+                          </th>
+                        </thead>
+                        <tbody>
+						{% for value in related_movie %}
+						<tr>
+						  <td>{{ loop.index0 }}</td>
+						  <td>{{ value[0] }}</td>
+						  <td>{{ value[1] }}</td>
+						  <td>{{ value[2] }}</td>
+						</tr>
+						{% endfor %}
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
                 </div>
               </div>
