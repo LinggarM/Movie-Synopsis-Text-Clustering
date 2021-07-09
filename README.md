@@ -3,13 +3,13 @@ Movie Synopsis Text Clustering (Tugas Besar Pengolahan Bahasa Alami - Natural La
 
 ## Installation
 
-Change `path` variable in `kmeans.py` into where you gonna save this repo. For the example i'm using `C:\Users\Linggar Maretva\Desktop\New folder` as my path.
+Change `path` variable in `kmeans.py` into where you going to save this repo. For the example I am using `C:\Users\Linggar Maretva\Desktop\Movie-Synopsis-Text-Clustering` as my path.
 ```sh
 ...
 ...
 from sklearn.decomposition import PCA
 
-path = r"C:\Users\Linggar Maretva\Desktop\New folder"
+path = r"C:\Users\Linggar Maretva\Desktop\Movie-Synopsis-Text-Clustering"
 df_movies = pd.read_csv(r'%s\static\files\movie_synopsis.csv' % path)
 ...
 ...
@@ -22,5 +22,5 @@ Run by typing these code :
 python app.py
 ```
 
-## Screenshot
+## Screenshots
 <img src="https://github.com/LinggarM/Movie-Synopsis-Text-Clustering/raw/main/Movie%20Synopsis%20Clustering%20Web%20App/static/assets/img/ss.PNG"/>
