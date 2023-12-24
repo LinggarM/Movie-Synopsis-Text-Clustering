@@ -1,9 +1,11 @@
 # Movie-Synopsis-Text-Clustering
-Movie Synopsis Text Clustering using K-Means Clustering and TF-IDF Vectorizer and deployment using framework Flask
+Movie Synopsis Text Clustering using **K-Means Clustering** and **TF-IDF Vectorizer** and deployment using framework **Flask**.
 
 ## About the Project
 
-This project is a major assignment project for the second semester of the natural language processing course. The objective of this task is to perform text clustering on movie synopsis data and transform it into a web application.
+This project is a major assignment project for the second semester of the **natural language processing** course. The objective of this task is to collect movie synopsis data, perform text clustering on the movie synopsis data into k amount of clusters, and transform it into a web application.
+
+In this project, we use **K-Means Clustering** to perform text clustering and **TF-IDF Vectorizer** as Word Embedding (to convert text data into vectors).
 
 ## Technology Used
 
@@ -15,6 +17,7 @@ This project is a major assignment project for the second semester of the natura
   * Scikit-learn
   * Wordcloud
   * Requests
+  * Flask
 
 ## Notebook File
 * [synopsis_clustering.ipynb](notebooks/synopsis_clustering.ipynb)
@@ -96,29 +99,70 @@ This project is a major assignment project for the second semester of the natura
   
     - ![images/3d_pca.png](images/3d_pca.png)
 
-## Installation
+## Web App Screenshots
+  
+   K-Means Model Training | Clustering Result
+   :-------------------------:|:-------------------------:
+   ![K-Means%20Model%20Training](docs/Screenshot%20+%20Keterangan%20Aplikasi/1.%20K-Means%20Model%20Training/Movie%20Synopsis%20Clustering%20(0).png)  |  ![Clustering%20Result](docs/Screenshot%20+%20Keterangan%20Aplikasi/2.%20Clustering%20Result/1.%20Movie%20Synopsis%20Clustering%20(1).png)
+   Feature Names | Data per Clusters
+   ![Feature%20Names](images/screenshots/Movie%20Synopsis%20Clustering%20(2)_2.png) | ![Data%20per%20Clusters](images/screenshots/Movie%20Synopsis%20Clustering%20(3)_2.png)
+   Cluster Prediction (By Synopsis) | Cluster Prediction (By Title)
+   ![wordcloud4](images/screenshots/Movie%20Synopsis%20Clustering%20(5)_2.png) | ![wordcloud5](images/screenshots/Movie%20Synopsis%20Clustering%20(7)_2.png)
 
-Change `path` variable in `kmeans.py` into where you going to save this repo. For the example I am using `C:\Users\Linggar Maretva\Desktop\Movie-Synopsis-Text-Clustering` as my path.
-```sh
-...
-...
-from sklearn.decomposition import PCA
+## Web App Live Demo
+ - Web App Movie Synopsis Clustering: [http://xxx.xxx](http://xxx.xxx)
 
-path = r"C:\Users\Linggar Maretva\Desktop\Movie-Synopsis-Text-Clustering"
-df_movies = pd.read_csv(r'%s\static\files\movie_synopsis.csv' % path)
-...
-...
-```
+## Web App Features
+   - Perform **k-means model training** with input k (number of clusters).
+   - Download **K-Means** model
+   - Download **data that has been labeled** using trained k-means model
+   - The **Elbow Method** evaluation visualization
+   - The **Silhouette Score** evaluation
+   - The 2 dimension **PCA (Principal Component Analysis)** data visualization
+   - The 3 dimension **PCA (Principal Component Analysis)** data visualization
+   - **Feature names** list for each cluster
+   - **WordCloud** visualization of each Feature Names
+   - Preview and download **data per clusters**
+   - Cluster prediction + related movie recommendation from input **synopsis**
+   - Cluster prediction + related movie recommendation from input **movie title**
 
-## Usage
+## Web App Installation
 
-Run by typing these code :
-```sh
-python app.py
-```
+1. Clone this repo
+   ```sh
+   git clone https://github.com/LinggarM/Movie-Synopsis-Text-Clustering
+   ```
+2. Open the repo folder you have cloned in your PC
+3. Create a virtual environment
+   ```sh
+   python -m venv myenv
+   ```
+4. Activate the virtual environment
+   ```sh
+   myenv/Scripts/activate or "myenv/Scripts/activate" (Windows)
+   myenv/bin/activate (Linux)
+   ```
+5. Install the requirements/ dependencies
+   ```sh
+   pip install -r requirements.txt
+   ```
 
-## Screenshots
-<img src="https://github.com/LinggarM/Movie-Synopsis-Text-Clustering/raw/main/Movie%20Synopsis%20Clustering%20Web%20App/static/assets/img/ss.PNG"/>
+## Web App Usage (Tutorials)
+
+1. Open CMD in Repository Folder
+2. Run the web app by executing this command :
+   ```
+   python app.py
+   ```
+   or :
+   ```
+   run Flask
+   ```
+3. Open the given URL
+   ```
+   http://127.0.0.1:5000/
+   ```
+4. Input **cluster number (k)**, and click "train model" to start the training process. Wait for a while until the training process finished, and you will be redirected to **Clustering result** page with the information of the finished clustering model training process.
 
 ## Publication
 * [Aplikasi Clustering Film Berdasarkan Sinopsisnya.pdf](docs/Laporan_PBA_Kelompok%205.pdf)
@@ -128,3 +172,6 @@ python app.py
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
+
+## Acknowledgments
+* [Material Dashboard - v2.1.2](https://www.creative-tim.com/product/material-dashboard) for HTML templates
