@@ -1,0 +1,23 @@
+Tugas Besar :
+- Membuat aplikasi "sederhana" (tidak sampai level TA) terkait dengan NLP. Bahasa terserah. Lebih bagus jika ada UI-nya.
+- Topik : Text Clustering, Question Answering, Summarization, Machine Translation. 
+- Topik tiap kelompok boleh sama, namun domain harus berbeda. Domain boleh sama jika tekniknya berbeda.
+- Kelompok terdiri dari 2 orang
+- Jika berhasil, ambil nilai ujian dari tugas besar
+- Pertemuan pekan depan melihat progress untuk menentukkan apakah ujian atau memakai tugas besar sebagai nilai ujian. Sambil belajar mesin translasi.
+
+Dikumpulkan dalam bentuk laporan tertulis
+Format Laporan :
+1.     Halaman sampul
+2.     Abstrak
+3.     Kata Pengantar
+4.     Daftar Isi
+5.     Pendahuluan
+6.     Perumusan Masalah
+7.     Dasar Teori
+8.     Metodologi (Langkah-langkah kerja yang dilakukan)
+9.     Hasil dan Pembahasan (Tampilan antar muka, Hasil eksperimen dan Analisa hasil)
+10.    Kesimpulan
+11.    Daftar Pustaka
+12.    Lampiran (Source code program, Pembagian Tugas antar anggota Tim)
+Dateline Pengumpulan hari Jum'at, tanggal 18 Juni 2021 pukul 10.00
