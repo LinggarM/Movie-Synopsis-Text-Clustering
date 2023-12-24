@@ -15,29 +15,28 @@ from wordcloud import WordCloud
 from sklearn.metrics.pairwise import cosine_similarity, euclidean_distances
 from sklearn.decomposition import PCA
 
-path = r"C:\Users\Linggar Maretva\Desktop\New folder"
-df_movies = pd.read_csv(r'%s\static\files\movie_synopsis.csv' % path)
+df_movies = pd.read_csv(r'static\files\movie_synopsis.csv')
 index_drop = df_movies[df_movies['synopsis'] == "No overview found."].index
 df_movies.drop(index_drop , inplace=True)
 df_movies.reset_index(drop =True, inplace=True)
-vectorizer = pickle.load(open(r'%s\static\files\vectorizer.sav'  % path, 'rb'))
-features = pickle.load(open(r'%s\static\files\features.sav'  % path, 'rb'))
+vectorizer = pickle.load(open(r'static\files\vectorizer.sav', 'rb'))
+features = pickle.load(open(r'static\files\features.sav', 'rb'))
 
 def train(k) :
-	vectorizer = pickle.load(open(r'%s\static\files\vectorizer.sav'  % path, 'rb'))
-	features = pickle.load(open(r'%s\static\files\features.sav'  % path, 'rb'))
+	vectorizer = pickle.load(open(r'static\files\vectorizer.sav', 'rb'))
+	features = pickle.load(open(r'static\files\features.sav', 'rb'))
 	kmeans_model = KMeans(n_clusters = k)
 	synopsis_clusters = kmeans_model.fit(features)
 	# Save Model
-	pickle.dump(kmeans_model, open(r'%s\static\files\kmeans_model.sav' % path, 'wb'))
+	pickle.dump(kmeans_model, open(r'static\files\kmeans_model.sav', 'wb'))
 	
 	# Save Labeled Data
 	df_movies['label'] = kmeans_model.labels_
-	with io.open(r'%s\static\files\movie_synopsis_labeled.csv' % path, 'w', encoding='utf-8') as f:
+	with io.open(r'static\files\movie_synopsis_labeled.csv', 'w', encoding='utf-8') as f:
 		df_movies.to_csv(f)
 	
 	# Save Data for Each Cluster
-	folder = (r'%s\static\files\csv cluster' % path)
+	folder = (r'static\files\csv cluster')
 	for filename in os.listdir(folder):
 		file_path = os.path.join(folder, filename)
 		try:
@@ -50,7 +49,7 @@ def train(k) :
 	
 	clusters = df_movies.groupby('label')
 	for cluster in clusters.groups :
-		f = open((r'%s\static\files\csv cluster\cluster' % path)+str(cluster)+ '.csv', 'w', encoding='utf-8') # buat file csv untuk tiap cluster
+		f = open((r'static\files\csv cluster\cluster')+str(cluster)+ '.csv', 'w', encoding='utf-8') # buat file csv untuk tiap cluster
 		data = clusters.get_group(cluster)[['title','synopsis']] # judul dan sinposis tiap data pada tiap cluster
 		f.write(data.to_csv(index_label='id')) # simpan ke csv
 		f.close()
@@ -67,7 +66,7 @@ def train(k) :
 			print('   %s' % terms[j])
 			feature_names[i][j_counter] = terms[j]
 			j_counter += 1
-	with io.open(r'%s\static\files\feature_names.csv' % path, 'w') as f:
+	with io.open(r'static\files\feature_names.csv', 'w') as f:
 		pd.DataFrame(feature_names).to_csv(f)
 	
 	# Save WordCloud
@@ -86,44 +85,18 @@ def train(k) :
 	  plt.figure()
 	  plt.imshow(wordcloud, interpolation="bilinear")
 	  plt.axis("off")
-	  plt.savefig(r'%s\static\files\wordcloud\wordcloud%d.jpg' % (path, i))
+	  plt.savefig(r'static\files\wordcloud\wordcloud%d.jpg' % (i))
 	
 	# Save Silhouette
-	with open(r'%s\static\files\silhouette.txt' % path, 'w') as f:
+	with open(r'static\files\silhouette.txt', 'w') as f:
 		f.write(str(silhouette_score(features, labels = kmeans_model.labels_)))
-	
-	# # Save PCA
-	# pca = PCA(n_components = 2)
-	# reduced_features = pca.fit_transform(features.toarray())
-	# reduced_cluster_centers = pca.transform(synopsis_clusters.cluster_centers_)
-	
-	# plt.figure(figsize=(30, 15), dpi=80)
-	# plt.scatter(reduced_features[:, 0], reduced_features[:,1], c = kmeans_model.predict(features))
-	# plt.scatter(reduced_cluster_centers[:, 0], reduced_cluster_centers[:,1], marker='x', s=150, c='b')
-	# plt.savefig(r'%s\static\files\2d.png' % (path))
-	
-	# pca_3d = PCA(n_components = 3)
-	# reduced_features_3d = pca_3d.fit_transform(features.toarray())
-	# reduced_cluster_centers_3d = pca_3d.transform(synopsis_clusters.cluster_centers_)
-	
-	# sns.set(style = "darkgrid")
-	# fig = plt.figure(figsize=(30, 15), dpi=80)
-	# ax = fig.add_subplot(111, projection = '3d')
-	# x = reduced_features_3d[:, 0]
-	# y = reduced_features_3d[:, 1]
-	# z = reduced_features_3d[:, 2]
-	# ax.scatter(x, y, z, c = synopsis_clusters.labels_)
-	# ax.scatter(reduced_cluster_centers_3d[:, 0], reduced_cluster_centers_3d[:,1], reduced_cluster_centers_3d[:,2], marker='x', s=500, c='b')
-	# plt.savefig(r'%s\static\files\3d.png' % (path))
-	
-	
 
 def silhouette() :
-	silhouette = open(r'%s\static\files\silhouette.txt' % path, 'r').read()
+	silhouette = open(r'static\files\silhouette.txt', 'r').read()
 	return silhouette
 
 def cluster_number() :
-	filename = r'%s\static\files\feature_names.csv' % path
+	filename = r'static\files\feature_names.csv'
 	feature_names = pd.read_csv(filename, header=0)
 	feature_names = list(feature_names.values)
 	index_counter = 0
@@ -134,20 +107,20 @@ def cluster_number() :
 	return index
 
 def labeled_data() :
-	filename = r'%s\static\files\movie_synopsis_labeled.csv' % path
+	filename = r'static\files\movie_synopsis_labeled.csv'
 	movie_synopsis_labeled = pd.read_csv(filename, header=0)
 	movie_synopsis_labeled = movie_synopsis_labeled.head()
 	movie_synopsis_labeled = list(movie_synopsis_labeled.values)
 	return movie_synopsis_labeled
 
 def feature_names() :
-	filename = r'%s\static\files\feature_names.csv' % path
+	filename = r'static\files\feature_names.csv'
 	feature_names = pd.read_csv(filename, header=0)
 	feature_names = list(feature_names.values)
 	return feature_names
 
 def clusters_data() :
-	filename = r'%s\static\files\feature_names.csv' % path
+	filename = r'static\files\feature_names.csv'
 	feature_names = pd.read_csv(filename, header=0)
 	feature_names = list(feature_names.values)
 	index_counter = 0
@@ -159,7 +132,7 @@ def clusters_data() :
 	  
 	clusters_data_full = []
 	for i in range(cluster_number) :
-		path_file = r"%s\static\files\csv cluster" % path
+		path_file = r"static\files\csv cluster"
 		filename = path_file + "\cluster" + str(i) + ".csv"
 		clusters_data = pd.read_csv(filename, header=0)
 		clusters_data = clusters_data.head()
@@ -168,8 +141,8 @@ def clusters_data() :
 	return clusters_data_full
 
 def predict_cluster(sentence) :
-	vectorizer = pickle.load(open(r'%s\static\files\vectorizer.sav'  % path, 'rb'))
-	kmeans_model = pickle.load(open(r'%s\static\files\kmeans_model.sav' % path, 'rb'))
+	vectorizer = pickle.load(open(r'static\files\vectorizer.sav', 'rb'))
+	kmeans_model = pickle.load(open(r'static\files\kmeans_model.sav', 'rb'))
 	Y = vectorizer.transform([sentence])
 	prediction = kmeans_model.predict(Y)
 	cluster_prediction = prediction[0]
@@ -178,7 +151,7 @@ def predict_cluster(sentence) :
 	query = vectorizer.transform(query)
 	
 	# Get Cosine Similarity Score
-	features = pickle.load(open(r'%s\static\files\features.sav'  % path, 'rb'))
+	features = pickle.load(open(r'static\files\features.sav', 'rb'))
 	cosine_score = []
 	index = 0
 	for i in features :
@@ -218,8 +191,8 @@ def predict_cluster_bytitle(query) :
 		pass
 
 	# Predict Cluster
-	vectorizer = pickle.load(open(r'%s\static\files\vectorizer.sav'  % path, 'rb'))
-	kmeans_model = pickle.load(open(r'%s\static\files\kmeans_model.sav' % path, 'rb'))
+	vectorizer = pickle.load(open(r'static\files\vectorizer.sav', 'rb'))
+	kmeans_model = pickle.load(open(r'static\files\kmeans_model.sav', 'rb'))
 	Y = vectorizer.transform([synopsis_ori])
 	prediction = kmeans_model.predict(Y)
 	cluster_prediction = prediction[0]
@@ -228,7 +201,7 @@ def predict_cluster_bytitle(query) :
 	query = vectorizer.transform(query)
 	
 	# Get Cosine Similarity Score
-	features = pickle.load(open(r'%s\static\files\features.sav'  % path, 'rb'))
+	features = pickle.load(open(r'static\files\features.sav', 'rb'))
 	cosine_score = []
 	index = 0
 	for i in features :
