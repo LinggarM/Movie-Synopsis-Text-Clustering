@@ -1,0 +1,7 @@
+Ditampilkan preview 5 data hasil clustering yang sudah dilabeli dengan clusternya, disediakan juga tombol untuk mendownload semua data yang sudah dilabeli dengan format .csv
+
+Disediakan juga tombol untuk mendownload model K-Means yang telah ditraining. Format file modelnya adalah .sav
+
+Evaluasi yang ditampilkan ada 2, yaitu Silhouette Score dan Elbow Method. (Lebih lanjut : https://towardsdatascience.com/silhouette-coefficient-validating-clustering-techniques-e976bb81d10c)
+
+Visualisasi Data yang digunakan menggunakan reduksi fitur dengan PCA, menjadi 2 fitur untuk visualisasi 2 dimensi, dan 3 fitur untuk visualisasi 3 dimensi

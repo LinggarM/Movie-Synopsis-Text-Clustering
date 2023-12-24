@@ -1,0 +1,6 @@
+Query yang dimasukkan untuk mencari judul dan sinopsis film sesuai query yang dimasukkan.
+
+Dimasukkan query "star trek beyond", didapatkan hasil pencarian judul dan sinopsis dari database, lalu didapatkan prediksi cluster 6.
+
+Related Movies merupakan 10 film yang terkait dengan sinopsis dari film (ditampilkan juga nilai cosine similarity berurutan dari yang terbesar ke terkecil, semakin besar, semakin mirip dengan sinopsis yang dimasukkan)
+

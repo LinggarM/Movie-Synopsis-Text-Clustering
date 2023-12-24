@@ -1,0 +1,6 @@
+Sinopsis yang dimasukkan adalah sinposis film Finding Dory :
+"After his son is captured in the Great Barrier Reef and taken to Sydney, a timid clownfish sets out on a journey to bring him home."
+
+Didapatkan prediksi cluster-nya adalah cluster 7
+
+Related Movies merupakan 10 film yang terkait dengan sinopsis yang dimasukkan (ditampilkan juga nilai cosine similarity berurutan dari yang terbesar ke terkecil, semakin besar, semakin mirip dengan sinopsis yang dimasukkan)

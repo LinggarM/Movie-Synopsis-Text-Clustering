@@ -1,0 +1,1 @@
+Halaman awal pengguna dapat melakukan training model K-Means dengan memasukkan jumlah cluster yang diinginkan. Data sinopsis film yang digunakan adalah data dari website https://www.themoviedb.org/
